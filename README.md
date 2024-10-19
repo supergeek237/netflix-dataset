@@ -4,9 +4,12 @@
 This project is to practice using **Pandas** to analyse data and visualise insights using **Matplotlib** and **Seaborn**.
 
 ## Features
-- **Clean data**: Clean and load dataset for. 
+- **Clean data**: Clean and load dataset. 
+
 - **Genre Analysis**: Visualises the popularity and trends of genres.
+    
 - **Duration Analysis**: Visualises trends in movie durations based on release date and genre.
+    
 - **Year Analysis**: Visualises trends in movie release years.
 
 ## Installation
