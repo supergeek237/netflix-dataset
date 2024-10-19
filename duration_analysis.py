@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import numpy as np
 
 def plot_adg(df):
     """cleans genres and visualises average movie duration based on genre for top genres"""
@@ -31,7 +32,6 @@ def plot_ady(df):
     """Creates a scatter plot for movie duration vs year"""
     df['release_year'] = pd.to_numeric(df['release_year'], errors='coerce')
 
-    plt.figure(figsize=(12, 6))
     sns.lmplot(x='release_year', y='duration', data=df, aspect=2,
                 scatter_kws={'s': 10}, line_kws={'color': 'red'})
     plt.title('Movie Duration vs Release Year')
@@ -40,3 +40,33 @@ def plot_ady(df):
     plt.grid(True)
     plt.tight_layout
     plt.show()
+
+def dur_stat(df):
+    """prints statistics for movie durations"""
+    durations = df['duration'].to_numpy()
+
+    mu_dur = np.mean(durations)
+    x_dur = np.median(durations)
+    sigma_dur = np.std(durations)
+
+    print(f'Mean Duration: {mu_dur:.2f} minutes.')
+    print(f'Median Duration: {x_dur:.2f} minutes.')
+    print(f"Standard Deviation: {sigma_dur:.2f}\n")
+
+def fltr_long(df, min_dur):
+    """filter movies that are longer than specified dur"""
+    dur = df['duration'].to_numpy()
+    mask = dur > min_dur
+
+    long = df[mask]
+
+    return long
+
+def fltr_short(df, max_dur):
+    """filter movies that are shorter than specified dur"""
+    dur = df['duration'].to_numpy()
+    mask = dur < max_dur
+
+    short = df[mask]
+
+    return short
